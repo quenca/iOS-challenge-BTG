@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD9F4351226FE46B009A1C02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F4350226FE46B009A1C02 /* AppDelegate.swift */; };
-		CD9F4353226FE46B009A1C02 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F4352226FE46B009A1C02 /* MoviesViewController.swift */; };
+		CD9F4353226FE46B009A1C02 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F4352226FE46B009A1C02 /* MovieViewController.swift */; };
 		CD9F4356226FE46B009A1C02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9F4354226FE46B009A1C02 /* Main.storyboard */; };
 		CD9F4359226FE46B009A1C02 /* BTG.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9F4357226FE46B009A1C02 /* BTG.xcdatamodeld */; };
 		CD9F435B226FE46C009A1C02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD9F435A226FE46C009A1C02 /* Assets.xcassets */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		CD9F434D226FE46B009A1C02 /* BTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BTG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9F4350226FE46B009A1C02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD9F4352226FE46B009A1C02 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		CD9F4352226FE46B009A1C02 /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		CD9F4355226FE46B009A1C02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD9F4358226FE46B009A1C02 /* BTG.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTG.xcdatamodel; sourceTree = "<group>"; };
 		CD9F435A226FE46C009A1C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				CD9F4381226FEE7F009A1C02 /* FavoritesViewController.swift */,
-				CD9F4352226FE46B009A1C02 /* MoviesViewController.swift */,
+				CD9F4352226FE46B009A1C02 /* MovieViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9F43892270ACD7009A1C02 /* DataSource.swift in Sources */,
-				CD9F4353226FE46B009A1C02 /* MoviesViewController.swift in Sources */,
+				CD9F4353226FE46B009A1C02 /* MovieViewController.swift in Sources */,
 				CD9F4351226FE46B009A1C02 /* AppDelegate.swift in Sources */,
 				CD9F439B2270B474009A1C02 /* LoadingCollectionViewCell.swift in Sources */,
 				CD9F4382226FEE7F009A1C02 /* FavoritesViewController.swift in Sources */,
