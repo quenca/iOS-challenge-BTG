@@ -208,15 +208,15 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
     }
     
- /*   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if case .results(let list) = dataSource.state {
             let movieDetail = MovieDetailViewController()
             movieDetail.selectedMovie? = list[indexPath.row]
             performSegue(withIdentifier: "MovieDetail", sender: indexPath)
         }
-    } */
+    }
     
-/*    // MARK: -Navigation
+   // MARK: -Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MovieDetail" {
             if case .results(let list) = dataSource.state {
@@ -226,5 +226,5 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 detailViewController.selectedMovie = searchResult
             }
         }
-    }*/
+    }
 }

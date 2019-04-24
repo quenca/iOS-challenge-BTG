@@ -69,17 +69,17 @@
                     <navigationItem key="navigationItem" title="Movies" id="vh5-td-u8S"/>
                     <connections>
                         <outlet property="collectionView" destination="v0S-hd-apg" id="SaN-4N-ren"/>
-                        <segue destination="Awp-8e-zkg" kind="show" id="mfh-F5-FWm"/>
+                        <segue destination="Awp-8e-zkg" kind="show" identifier="MovieDetail" id="mfh-F5-FWm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fso-TY-Jbt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1402.5" y="-716.19718309859161"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="Hcv-a5-QOj">
             <objects>
-                <viewController id="Awp-8e-zkg" sceneMemberID="viewController">
+                <viewController id="Awp-8e-zkg" customClass="MovieDetailViewController" customModule="BTG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WvR-gL-JFW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,13 +102,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRF-pg-n3R">
-                                <rect key="frame" x="270" y="245" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La8-uj-5Ch">
                                 <rect key="frame" x="16" y="363" width="288" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -123,10 +116,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wa3-bx-cqz">
+                                <rect key="frame" x="258" y="245" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qEU-s5-G2l"/>
                     </view>
+                    <connections>
+                        <outlet property="favButton" destination="wa3-bx-cqz" id="uYd-VP-ZmO"/>
+                        <outlet property="genreLabel" destination="d8P-qr-kUf" id="o6i-kA-JoG"/>
+                        <outlet property="overviewLabel" destination="La8-uj-5Ch" id="F6x-Qb-sD9"/>
+                        <outlet property="posterImage" destination="rht-5S-lIr" id="Gul-Iq-ljT"/>
+                        <outlet property="titleLabel" destination="Pqy-gG-C24" id="aLn-KN-DU3"/>
+                        <outlet property="yearLabel" destination="Wj1-yn-cwe" id="76I-BN-djS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckw-lX-rUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

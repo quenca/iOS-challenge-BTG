@@ -25,6 +25,7 @@
 		CD9F43962270B0FD009A1C02 /* NothingFoundCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9F43942270B0FD009A1C02 /* NothingFoundCollectionViewCell.xib */; };
 		CD9F439B2270B474009A1C02 /* LoadingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F43992270B474009A1C02 /* LoadingCollectionViewCell.swift */; };
 		CD9F439C2270B474009A1C02 /* LoadingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9F439A2270B474009A1C02 /* LoadingCollectionViewCell.xib */; };
+		CD9F439E2270BD54009A1C02 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F439D2270BD54009A1C02 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		CD9F43942270B0FD009A1C02 /* NothingFoundCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCollectionViewCell.xib; sourceTree = "<group>"; };
 		CD9F43992270B474009A1C02 /* LoadingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCollectionViewCell.swift; sourceTree = "<group>"; };
 		CD9F439A2270B474009A1C02 /* LoadingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD9F439D2270BD54009A1C02 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				CD9F4381226FEE7F009A1C02 /* FavoritesViewController.swift */,
 				CD9F4352226FE46B009A1C02 /* MovieViewController.swift */,
+				CD9F439D2270BD54009A1C02 /* MovieDetailViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				CD9F438F2270AE83009A1C02 /* MovieCollectionViewCell.swift in Sources */,
 				CD9F43952270B0FD009A1C02 /* NothingFoundCollectionViewCell.swift in Sources */,
 				CD9F4359226FE46B009A1C02 /* BTG.xcdatamodeld in Sources */,
+				CD9F439E2270BD54009A1C02 /* MovieDetailViewController.swift in Sources */,
 				CD9F43862270AC6A009A1C02 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
