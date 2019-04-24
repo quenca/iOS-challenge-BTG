@@ -45,8 +45,6 @@ class MovieDetailViewController: UIViewController {
         if selectedMovie != nil {
             updateUI()
         }
-        
-        UINavigationBar.appearance().barTintColor = UIColor(red: 203/255.0, green: 175/255.0, blue: 93/255.0, alpha: 1.0)
     }
     
     func updateUI() {
@@ -65,7 +63,6 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         })
-        
         
         overviewLabel.text = selectedMovie?.overview!
         if let posterPath = selectedMovie?.poster_path {
