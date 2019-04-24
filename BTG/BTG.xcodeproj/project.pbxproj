@@ -18,6 +18,9 @@
 		CD9F4382226FEE7F009A1C02 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F4381226FEE7F009A1C02 /* FavoritesViewController.swift */; };
 		CD9F43862270AC6A009A1C02 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F43852270AC6A009A1C02 /* Movie.swift */; };
 		CD9F43892270ACD7009A1C02 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F43882270ACD7009A1C02 /* DataSource.swift */; };
+		CD9F438F2270AE83009A1C02 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F438D2270AE83009A1C02 /* MovieCollectionViewCell.swift */; };
+		CD9F43902270AE83009A1C02 /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9F438E2270AE83009A1C02 /* MovieCollectionViewCell.xib */; };
+		CD9F43922270B052009A1C02 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F43912270B052009A1C02 /* UIImageView+DownloadImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		CD9F4381226FEE7F009A1C02 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		CD9F43852270AC6A009A1C02 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		CD9F43882270ACD7009A1C02 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		CD9F438D2270AE83009A1C02 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		CD9F438E2270AE83009A1C02 /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
+		CD9F43912270B052009A1C02 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +111,11 @@
 		CD9F434F226FE46B009A1C02 /* BTG */ = {
 			isa = PBXGroup;
 			children = (
+				CD9F438A2270AD19009A1C02 /* View */,
 				CD9F43872270ACC5009A1C02 /* Services */,
 				CD9F43842270AC58009A1C02 /* Model */,
 				CD9F4383226FEE8D009A1C02 /* View Controller */,
 				CD9F4350226FE46B009A1C02 /* AppDelegate.swift */,
-				CD9F4354226FE46B009A1C02 /* Main.storyboard */,
 				CD9F435A226FE46C009A1C02 /* Assets.xcassets */,
 				CD9F435C226FE46C009A1C02 /* LaunchScreen.storyboard */,
 				CD9F435F226FE46C009A1C02 /* Info.plist */,
@@ -159,6 +165,17 @@
 				CD9F43882270ACD7009A1C02 /* DataSource.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CD9F438A2270AD19009A1C02 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD9F4354226FE46B009A1C02 /* Main.storyboard */,
+				CD9F438D2270AE83009A1C02 /* MovieCollectionViewCell.swift */,
+				CD9F438E2270AE83009A1C02 /* MovieCollectionViewCell.xib */,
+				CD9F43912270B052009A1C02 /* UIImageView+DownloadImage.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +285,7 @@
 				CD9F435E226FE46C009A1C02 /* LaunchScreen.storyboard in Resources */,
 				CD9F435B226FE46C009A1C02 /* Assets.xcassets in Resources */,
 				CD9F4356226FE46B009A1C02 /* Main.storyboard in Resources */,
+				CD9F43902270AE83009A1C02 /* MovieCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +314,8 @@
 				CD9F4353226FE46B009A1C02 /* MoviesViewController.swift in Sources */,
 				CD9F4351226FE46B009A1C02 /* AppDelegate.swift in Sources */,
 				CD9F4382226FEE7F009A1C02 /* FavoritesViewController.swift in Sources */,
+				CD9F43922270B052009A1C02 /* UIImageView+DownloadImage.swift in Sources */,
+				CD9F438F2270AE83009A1C02 /* MovieCollectionViewCell.swift in Sources */,
 				CD9F4359226FE46B009A1C02 /* BTG.xcdatamodeld in Sources */,
 				CD9F43862270AC6A009A1C02 /* Movie.swift in Sources */,
 			);
