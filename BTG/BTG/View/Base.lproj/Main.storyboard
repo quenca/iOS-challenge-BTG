@@ -18,21 +18,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="df2-zT-Wjw">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a2R-xE-hBp">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1jg-v8-ooe">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Jcj-uZ-3wl" id="tFH-6A-IEV"/>
+                                    <outlet property="delegate" destination="Jcj-uZ-3wl" id="nYT-rd-9zk"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.94413810970000001" green="0.83333557840000005" blue="0.4979598522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="df2-zT-Wjw" firstAttribute="bottom" secondItem="7Zf-Jr-04I" secondAttribute="bottom" id="IF1-76-Uyh"/>
-                            <constraint firstItem="df2-zT-Wjw" firstAttribute="top" secondItem="7Zf-Jr-04I" secondAttribute="top" id="gST-YO-LVa"/>
-                            <constraint firstItem="df2-zT-Wjw" firstAttribute="leading" secondItem="7Zf-Jr-04I" secondAttribute="leading" id="jmv-wP-Cgv"/>
-                            <constraint firstItem="df2-zT-Wjw" firstAttribute="trailing" secondItem="7Zf-Jr-04I" secondAttribute="trailing" id="kjS-nU-IqQ"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="7Zf-Jr-04I"/>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="Hi2-Oy-jKw"/>
+                    <connections>
+                        <outlet property="collectionView" destination="a2R-xE-hBp" id="kXp-qp-G32"/>
+                        <outlet property="view" destination="a2R-xE-hBp" id="MPI-nc-JML"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1nT-d6-IwE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,10 +132,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wa3-bx-cqz">
-                                <rect key="frame" x="265" y="301" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wa3-bx-cqz">
+                                <rect key="frame" x="278" y="310" width="26" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button" image="favorite_empty_icon"/>
+                                <connections>
+                                    <action selector="favMovie:" destination="Awp-8e-zkg" eventType="touchUpInside" id="hh7-B8-1w3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -203,4 +216,7 @@
             <point key="canvasLocation" x="622.5" y="-39.08450704225352"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favorite_empty_icon" width="22" height="21"/>
+    </resources>
 </document>

@@ -12,13 +12,15 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
-    @IBOutlet weak var favButton: UIButton!
     
     var downloadTask: URLSessionDownloadTask?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor
     }
     
     // Cancel the pending download

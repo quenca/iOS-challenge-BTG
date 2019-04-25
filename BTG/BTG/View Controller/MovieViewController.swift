@@ -129,7 +129,7 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     // MARK: -Setting the Collection Cell Size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Set up desired width
+        // Set up desired width 
         let targetWidth: CGFloat = (self.collectionView.bounds.width - 3 * kHorizontalInsets) / 2
         
         // Use fake cell to calculate height

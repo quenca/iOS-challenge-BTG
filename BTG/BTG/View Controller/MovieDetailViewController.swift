@@ -22,7 +22,7 @@ class MovieDetailViewController: UIViewController {
     
     private let dataSource = DataSource()
     
-    var movieList: Movie!
+    var favMovies: [NSManagedObject] = []
     
     var selectedMovie: Movie? {
         didSet {
@@ -37,13 +37,52 @@ class MovieDetailViewController: UIViewController {
         case notFavorite
     }
     
-    var favMovie: [Movie?] = []
+    var favState: FavoriteState = .notFavorite
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if selectedMovie != nil {
             updateUI()
+        }
+    }
+    
+    @IBAction func favMovie(_ sender: UIButton) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let entity =
+            NSEntityDescription.entity(forEntityName: "FavoriteMovies",
+                                       in: managedContext)!
+        
+        let fav = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        if case .genreResults(let list) = self.dataSource.genreState {
+            for i in 0..<list.count {
+                if (self.selectedMovie!.genre_ids?.contains(list[i].id!))! {
+                     fav.setValue(list[i].name, forKeyPath: "genre")
+                }
+            }
+        }
+        
+        fav.setValue(selectedMovie?.title!, forKeyPath: "title")
+        fav.setValue(selectedMovie?.release_date!, forKeyPath: "year")
+        fav.setValue(selectedMovie?.overview!, forKeyPath: "overview")
+        fav.setValue(selectedMovie?.poster_path, forKeyPath: "posterPath")
+        
+        do {
+            try managedContext.save()
+            favMovies.append(fav)
+            print(favMovies)
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
