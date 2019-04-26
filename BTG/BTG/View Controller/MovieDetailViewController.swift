@@ -34,13 +34,6 @@ class MovieDetailViewController: UIViewController {
     
     var selectedFavMovie: NSObject?
     
-    enum FavoriteState {
-        case favorite
-        case notFavorite
-    }
-    
-    var favState: FavoriteState = .notFavorite
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,7 +46,6 @@ class MovieDetailViewController: UIViewController {
         }
         
         favorite()
-        
     }
     
     func favorite() {
@@ -84,6 +76,7 @@ class MovieDetailViewController: UIViewController {
            
             do {
                 try managedContext.save()
+                retrieveData()
             } catch {
                 print(error)
             }
@@ -118,6 +111,7 @@ class MovieDetailViewController: UIViewController {
                 // delete fav
                 deleteMovie(movie: data)
                 favButton.setImage(UIImage(named: "favorite_empty_icon"), for: .normal)
+                retrieveData()
                 return
             }
         }

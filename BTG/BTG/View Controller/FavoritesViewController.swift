@@ -20,6 +20,8 @@ class FavoritesViewController: UIViewController {
     
     var favMovies = MovieDetailViewController()
     
+    var searchController = UISearchController(searchResultsController: nil)
+    
     struct CollectionViewCellIdentifiers {
         static let favMovieCell = "FavoriteMovieCollectionViewCell"
     }
@@ -29,11 +31,34 @@ class FavoritesViewController: UIViewController {
         
         // Setup the Collection View
         collectionView.register(UINib(nibName: CollectionViewCellIdentifiers.favMovieCell, bundle: .main), forCellWithReuseIdentifier: CollectionViewCellIdentifiers.favMovieCell)
+        
+       setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        retrieveData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.definesPresentationContext = true
+    }
+    
+    func setupNavigationBar() {
+    //    searchController.searchBar.delegate = self as! UISearchBarDelegate
+   //     searchController.searchResultsUpdater = self as! UISearchResultsUpdating
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = false
+        searchController.searchBar.placeholder = "Search Movie"
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+    }
+    
+    func retrieveData() {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -104,7 +129,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     // Mark: -CollectionView Delegates
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
+            retrieveData()
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.favMovieCell, for: indexPath) as! FavoriteMovieCollectionViewCell
         
             let fav = favMovies.favMovies[indexPath.row]

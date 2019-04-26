@@ -12,6 +12,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var date: UILabel!
     
     var downloadTask: URLSessionDownloadTask?
     
@@ -32,6 +33,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func configure(for result: Movie) {
         
+        date.text = result.release_date!
         titleLabel.text = result.title!
         if let posterPath = result.poster_path {
             let urlImage = "https://image.tmdb.org/t/p/w200\(posterPath)"

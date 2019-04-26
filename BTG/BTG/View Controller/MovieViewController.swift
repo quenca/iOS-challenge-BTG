@@ -51,6 +51,11 @@ class MovieViewController: UIViewController {
         })
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.definesPresentationContext = true
+    }
+
     func setupNavigationBar() {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -82,7 +87,6 @@ extension MovieViewController: UISearchBarDelegate {
                 if !success {
                     print("error")
                 }
-                print("SEARCH")
                 self.collectionView.reloadData()
             })
         }
@@ -95,7 +99,6 @@ extension MovieViewController: UISearchBarDelegate {
                 print("error")
             }
             self.collectionView.reloadData()
-            print("RELOAD")
         })
     }
 }
@@ -153,8 +156,6 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
         // Still need to force the width, since width can be smalled due to break mode of labels
         size.width = targetWidth
         return size
-        //let width = (view.frame.size.width - 10) / 2.0
-        //return CGSize(width: width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
