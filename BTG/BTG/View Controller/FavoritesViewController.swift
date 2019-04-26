@@ -46,7 +46,7 @@ class FavoritesViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-    //    searchController.searchBar.delegate = self as! UISearchBarDelegate
+        searchController.searchBar.delegate = self 
    //     searchController.searchResultsUpdater = self as! UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -78,7 +78,7 @@ class FavoritesViewController: UIViewController {
     }
 }
 
-extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchDisplayDelegate {
     
     // MARK: -Setting the Collection Cell Size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -124,6 +124,42 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return favMovies.favMovies.count
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            var predicate: NSPredicate = NSPredicate()
+            predicate = NSPredicate(format: "title contains[c] '\(searchText)'")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteMovies")
+            fetchRequest.predicate = predicate
+            
+            do {
+                favMovies.favMovies = try context.fetch(fetchRequest) as! [NSManagedObject]
+            } catch {
+                print("error")
+            }
+        } else {
+            guard let appDelegate =
+                UIApplication.shared.delegate as? AppDelegate else {
+                    return
+            }
+            
+            let managedContext =
+                appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest =
+                NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovies")
+            
+            do {
+                favMovies.favMovies = try managedContext.fetch(fetchRequest)
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+        collectionView.reloadData()
+        
     }
     
     // Mark: -CollectionView Delegates

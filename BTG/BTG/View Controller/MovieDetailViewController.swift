@@ -55,6 +55,7 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
+    
     func deleteMovie(movie: NSManagedObject) {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
