@@ -32,6 +32,8 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    var selectedFavMovie: NSObject?
+    
     enum FavoriteState {
         case favorite
         case notFavorite
@@ -45,9 +47,80 @@ class MovieDetailViewController: UIViewController {
         if selectedMovie != nil {
             updateUI()
         }
+        
+        if selectedFavMovie != nil {
+            updateUIFav()
+        }
+        
+        favorite()
+        
     }
     
+    func favorite() {
+        for data in favMovies {
+            if data.value(forKey: "title") as? String == titleLabel.text {
+                favButton.setImage(UIImage(named: "favorite_full_icon"), for: .normal)
+            }
+        }
+    }
+    func deleteMovie(movie: NSManagedObject) {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteMovies")
+        
+        do {
+            let test = try managedContext.fetch(fetchRequest)
+            for data in test {
+                if data as! NSManagedObject == movie {
+                     managedContext.delete(movie)
+                }
+            }
+           
+            do {
+                try managedContext.save()
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
+    }
+
+    func retrieveData() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovies")
+        
+        do {
+            favMovies = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
+
     @IBAction func favMovie(_ sender: UIButton) {
+        
+        for data in favMovies {
+            if data.value(forKey: "title") as? String == titleLabel.text {
+                // delete fav
+                deleteMovie(movie: data)
+                favButton.setImage(UIImage(named: "favorite_empty_icon"), for: .normal)
+                return
+            }
+        }
         
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -81,12 +154,17 @@ class MovieDetailViewController: UIViewController {
             try managedContext.save()
             favMovies.append(fav)
             print(favMovies)
+            favorite()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
+    
+    
     func updateUI() {
+        retrieveData()
+        
         titleLabel.text = selectedMovie?.title!
         yearLabel.text = selectedMovie?.release_date!
         
@@ -113,6 +191,27 @@ class MovieDetailViewController: UIViewController {
                 print("Poster is \(smallURL)")
             }
         }
+         favorite()
+    }
+    
+    func updateUIFav() {
+        retrieveData()
+        
+        titleLabel.text = selectedFavMovie!.value(forKeyPath: "title") as? String
+        yearLabel.text = selectedFavMovie?.value(forKeyPath: "year") as? String
+        overviewLabel.text = selectedFavMovie?.value(forKeyPath: "overview") as? String
+        genreLabel.text = selectedFavMovie?.value(forKeyPath: "genre") as? String
+        
+        if let posterPath = selectedFavMovie?.value(forKeyPath: "posterPath") as? String {
+            let urlImage = "https://image.tmdb.org/t/p/w200\(posterPath)"
+            print(urlImage)
+            posterImage.image = UIImage(named: urlImage)
+            if let smallURL = URL(string: urlImage) {
+                downloadTask = posterImage.loadImage(url: smallURL)
+                print("Poster is \(smallURL)")
+            }
+        }
+        favButton.setImage(UIImage(named: "favorite_full_icon"), for: .normal)
     }
 }
 

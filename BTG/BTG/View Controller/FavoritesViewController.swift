@@ -115,6 +115,25 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
         
     }
     
+      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+        let movieDetail = MovieDetailViewController()
+        movieDetail.selectedFavMovie? = favMovies.favMovies[indexPath.row]
+        
+     performSegue(withIdentifier: "MovieDetail", sender: indexPath)
+     
+     }
+     
+     // MARK: -Navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     if segue.identifier == "MovieDetail" {
 
+     let detailViewController = segue.destination as! MovieDetailViewController
+     let indexPath = sender as! IndexPath
+     let fav = favMovies.favMovies[indexPath.row]
+     detailViewController.selectedFavMovie = fav
+        print(detailViewController.selectedFavMovie)
+     }
+    }
 }
 
