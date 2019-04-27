@@ -11,11 +11,13 @@ import CoreData
 
 class MovieDetailViewController: UIViewController {
     
+    // MARK: - Properties
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var voteAverage: UILabel!
     @IBOutlet weak var favButton: UIButton!
     
     var downloadTask: URLSessionDownloadTask?
@@ -34,6 +36,8 @@ class MovieDetailViewController: UIViewController {
     
     var selectedFavMovie: NSObject?
     
+    
+    // MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +52,9 @@ class MovieDetailViewController: UIViewController {
         favorite()
     }
     
+    // MARK: -Private Methods
+    
+    // Check if the movie is Favorite or Not
     func favorite() {
         for data in favMovies {
             if data.value(forKey: "title") as? String == titleLabel.text {
@@ -56,6 +63,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    // Delete the Favorite Movie
     func deleteMovie(movie: NSManagedObject) {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -85,7 +93,8 @@ class MovieDetailViewController: UIViewController {
             print(error)
         }
     }
-
+    
+    // Retrieve Data from CoreData
     func retrieveData() {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -105,6 +114,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
 
+    // MARK: -Action (Save Favorite Movie into CoreData)
     @IBAction func favMovie(_ sender: UIButton) {
         
         for data in favMovies {
@@ -144,24 +154,34 @@ class MovieDetailViewController: UIViewController {
         fav.setValue(selectedMovie?.release_date!, forKeyPath: "year")
         fav.setValue(selectedMovie?.overview!, forKeyPath: "overview")
         fav.setValue(selectedMovie?.poster_path, forKeyPath: "posterPath")
+        fav.setValue(selectedMovie?.vote_average, forKeyPath: "voteAverage")
         
         do {
             try managedContext.save()
             favMovies.append(fav)
-            print(favMovies)
             favorite()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
-    
-    
+    // MARK: -Update the Interface for Movies
     func updateUI() {
         retrieveData()
         
-        titleLabel.text = selectedMovie?.title!
-        yearLabel.text = selectedMovie?.release_date!
+        if let title = selectedMovie?.title {
+            titleLabel.text = title
+        } else {
+            titleLabel.text = "No Results"
+        }
+        
+        if let year = selectedMovie?.release_date {
+            yearLabel.text = year
+        } else {
+            yearLabel.text = "No Results"
+        }
+        
+        voteAverage.text = String(format:"%.1f", (selectedMovie?.vote_average!)!)
         
         dataSource.getGenreRequest(completion: { success in
             if !success {
@@ -189,13 +209,34 @@ class MovieDetailViewController: UIViewController {
          favorite()
     }
     
+    // MARK: -Update the Interface for Favorite Movies
     func updateUIFav() {
         retrieveData()
+        if let title = selectedFavMovie?.value(forKeyPath: "title") as? String  {
+            titleLabel.text = title
+        } else {
+            titleLabel.text = "No Results"
+        }
+
+        if let year = selectedFavMovie?.value(forKeyPath: "year") as? String {
+            yearLabel.text = year
+        } else {
+            yearLabel.text = "No Results"
+        }
         
-        titleLabel.text = selectedFavMovie!.value(forKeyPath: "title") as? String
-        yearLabel.text = selectedFavMovie?.value(forKeyPath: "year") as? String
-        overviewLabel.text = selectedFavMovie?.value(forKeyPath: "overview") as? String
-        genreLabel.text = selectedFavMovie?.value(forKeyPath: "genre") as? String
+        if let overview = selectedFavMovie?.value(forKeyPath: "overview") as? String {
+            overviewLabel.text = overview
+        } else {
+            overviewLabel.text = "No Results"
+        }
+        
+        if let genre = selectedFavMovie?.value(forKeyPath: "genre") as? String {
+            genreLabel.text = genre
+        } else {
+             genreLabel.text = "No Results"
+        }
+   
+        voteAverage.text = String(format: "%@", selectedFavMovie?.value(forKey: "voteAverage") as! CVarArg)
         
         if let posterPath = selectedFavMovie?.value(forKeyPath: "posterPath") as? String {
             let urlImage = "https://image.tmdb.org/t/p/w200\(posterPath)"

@@ -10,22 +10,21 @@ import UIKit
 import CoreData
 
 class FavoritesViewController: UIViewController {
-    
+    //MARK: -Properties
     @IBOutlet weak var collectionView: UICollectionView!
     
     var offscreenCells = Dictionary<String, UICollectionViewCell>()
-    
     let kHorizontalInsets: CGFloat = 10.0
     let kVerticalInsets: CGFloat = 10.0
     
     var favMovies = MovieDetailViewController()
-    
+
     var searchController = UISearchController(searchResultsController: nil)
     
     struct CollectionViewCellIdentifiers {
         static let favMovieCell = "FavoriteMovieCollectionViewCell"
     }
-    
+    // MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +37,7 @@ class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         retrieveData()
+        collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,20 +45,21 @@ class FavoritesViewController: UIViewController {
         self.definesPresentationContext = true
     }
     
-    func setupNavigationBar() {
-        searchController.searchBar.delegate = self 
-   //     searchController.searchResultsUpdater = self as! UISearchResultsUpdating
+    // Mark: -Private Methods
+    private func setupNavigationBar() {
+        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = false
-        searchController.searchBar.placeholder = "Search Movie"
+        searchController.searchBar.placeholder = "Search Favorite Movie"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
     }
     
-    func retrieveData() {
+    // Retrieve Data from CoreData
+    private func retrieveData() {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -78,6 +79,7 @@ class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: -Collection Size
 extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UISearchDisplayDelegate {
     
     // MARK: -Setting the Collection Cell Size
@@ -126,6 +128,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
         return favMovies.favMovies.count
     }
     
+    // MARK: -SearchBar for Favorite Movies
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText != "" {
             var predicate: NSPredicate = NSPredicate()
@@ -193,7 +196,6 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
      let indexPath = sender as! IndexPath
      let fav = favMovies.favMovies[indexPath.row]
      detailViewController.selectedFavMovie = fav
-        print(detailViewController.selectedFavMovie)
      }
     }
 }

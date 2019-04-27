@@ -5,9 +5,10 @@
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="voteAverage" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FavoriteMovies" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="FavoriteMovies" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

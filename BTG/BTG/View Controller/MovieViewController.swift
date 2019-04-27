@@ -9,11 +9,11 @@
 import UIKit
 class MovieViewController: UIViewController {
     
+    //MARK: -Properties
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let dataSource = DataSource()
-    
-    var searchController = UISearchController(searchResultsController: nil)
     
     // A dictionary of offscreen cells that are used within the sizeForItemAtIndexPath method to handle the size calculations. These are never drawn onscreen. The dictionary is in the format:
     // { NSString *reuseIdentifier : UICollectionViewCell *offscreenCell, ... }
@@ -22,14 +22,16 @@ class MovieViewController: UIViewController {
     let kHorizontalInsets: CGFloat = 10.0
     let kVerticalInsets: CGFloat = 10.0
     
+    var searchController = UISearchController(searchResultsController: nil)
+    weak var delegate: UISearchControllerDelegate?
+    
     struct CollectionViewCellIdentifiers {
         static let movieCell = "MovieCollectionViewCell"
         static let nothingFoundCell = "NothingFoundCollectionViewCell"
         static let loadingCell = "LoadingCollectionViewCell"
     }
     
-    weak var delegate: UISearchControllerDelegate?
-    
+    // MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,8 +57,9 @@ class MovieViewController: UIViewController {
         super.viewDidAppear(animated)
         self.definesPresentationContext = true
     }
-
-    func setupNavigationBar() {
+    
+    // MARK: -Private Methods
+    private func setupNavigationBar() {
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -70,7 +73,7 @@ class MovieViewController: UIViewController {
     }
 }
 
-// MARK: -Setting the SerchBar
+// MARK: -SearchBar Delegate
 extension MovieViewController: UISearchBarDelegate {
     
     // Return the Popular Movies of your SerchBar
@@ -103,11 +106,11 @@ extension MovieViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: -SearchBar Update
 extension MovieViewController: UISearchResultsUpdating {
     
     // Update the Search
     func updateSearchResults(for searchController: UISearchController) {
-        print("UPDADE \(searchController.searchBar.text!)")
         dataSource.getSerchRequest(for: searchController.searchBar.text!, completion: { success in
             if !success {
                 print("error")
@@ -121,13 +124,13 @@ extension MovieViewController: UISearchResultsUpdating {
                 if !success {
                     print("error")
                 }
-                print("---- UPDATE")
                 self.collectionView.reloadData()
             })
         }
     }
 }
 
+// MARK: -Collection Size
 extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: -Setting the Collection Cell Size
@@ -170,6 +173,7 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return kVerticalInsets
     }
     
+    // Mark: -CollectionView Delegates
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch dataSource.state {
         case .notSearchedYet:
@@ -182,8 +186,7 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return list.count ?? 0
         }
     }
-    
-    // Mark: -CollectionView Delegates
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print("Collection view cellForRowAt")
         
