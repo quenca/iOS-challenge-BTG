@@ -36,10 +36,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94413810970000001" green="0.83333557840000005" blue="0.4979598522" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="a2R-xE-hBp" firstAttribute="top" secondItem="7Zf-Jr-04I" secondAttribute="top" id="9by-FE-p8U"/>
-                            <constraint firstItem="a2R-xE-hBp" firstAttribute="bottom" secondItem="7Zf-Jr-04I" secondAttribute="bottom" id="ECf-2m-Men"/>
-                            <constraint firstItem="a2R-xE-hBp" firstAttribute="leading" secondItem="7Zf-Jr-04I" secondAttribute="leading" id="XHc-Z2-boK"/>
-                            <constraint firstItem="a2R-xE-hBp" firstAttribute="trailing" secondItem="7Zf-Jr-04I" secondAttribute="trailing" id="rDV-7F-SG4"/>
+                            <constraint firstItem="a2R-xE-hBp" firstAttribute="top" secondItem="7Zf-Jr-04I" secondAttribute="top" id="ARg-eq-SbD"/>
+                            <constraint firstItem="a2R-xE-hBp" firstAttribute="bottom" secondItem="7Zf-Jr-04I" secondAttribute="bottom" id="Q5P-8g-Bdu"/>
+                            <constraint firstItem="a2R-xE-hBp" firstAttribute="trailing" secondItem="7Zf-Jr-04I" secondAttribute="trailing" id="by1-vi-yXt"/>
+                            <constraint firstItem="a2R-xE-hBp" firstAttribute="leading" secondItem="7Zf-Jr-04I" secondAttribute="leading" id="gwl-uT-tF3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Zf-Jr-04I"/>
                     </view>
@@ -80,10 +80,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94413810968399048" green="0.83333557844161987" blue="0.49795985221862793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="v0S-hd-apg" firstAttribute="top" secondItem="ReT-Uc-eG8" secondAttribute="top" id="bwt-sv-aBy"/>
-                            <constraint firstItem="v0S-hd-apg" firstAttribute="bottom" secondItem="ReT-Uc-eG8" secondAttribute="bottom" id="mFF-eO-qvF"/>
-                            <constraint firstItem="v0S-hd-apg" firstAttribute="leading" secondItem="ReT-Uc-eG8" secondAttribute="leading" id="n2N-SG-uZ2"/>
-                            <constraint firstItem="v0S-hd-apg" firstAttribute="trailing" secondItem="ReT-Uc-eG8" secondAttribute="trailing" id="xQv-tj-CEr"/>
+                            <constraint firstItem="v0S-hd-apg" firstAttribute="trailing" secondItem="ReT-Uc-eG8" secondAttribute="trailing" id="4S1-vB-GFj"/>
+                            <constraint firstItem="v0S-hd-apg" firstAttribute="bottom" secondItem="ReT-Uc-eG8" secondAttribute="bottom" id="8ed-3I-hnf"/>
+                            <constraint firstItem="v0S-hd-apg" firstAttribute="top" secondItem="ReT-Uc-eG8" secondAttribute="top" id="Ld7-Nl-8fL"/>
+                            <constraint firstItem="v0S-hd-apg" firstAttribute="leading" secondItem="ReT-Uc-eG8" secondAttribute="leading" id="juh-wN-Wcb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ReT-Uc-eG8"/>
                     </view>
@@ -267,6 +267,6 @@
         <image name="favorite_empty_icon" width="22" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UhJ-UW-dsC"/>
+        <segue reference="mfh-F5-FWm"/>
     </inferredMetricsTieBreakers>
 </document>
