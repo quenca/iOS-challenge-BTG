@@ -150,10 +150,11 @@ class MovieDetailViewController: UIViewController {
             }
         }
         
+        let image = posterImage.image!.pngData() as! NSData
         fav.setValue(selectedMovie?.title!, forKeyPath: "title")
         fav.setValue(selectedMovie?.release_date!, forKeyPath: "year")
         fav.setValue(selectedMovie?.overview!, forKeyPath: "overview")
-        fav.setValue(selectedMovie?.poster_path, forKeyPath: "posterPath")
+        fav.setValue(image, forKeyPath: "posterPath")
         fav.setValue(selectedMovie?.vote_average, forKeyPath: "voteAverage")
         
         do {
@@ -238,15 +239,17 @@ class MovieDetailViewController: UIViewController {
    
         voteAverage.text = String(format: "%@", selectedFavMovie?.value(forKey: "voteAverage") as! CVarArg)
         
-        if let posterPath = selectedFavMovie?.value(forKeyPath: "posterPath") as? String {
+        if let data = selectedFavMovie?.value(forKeyPath: "posterPath") as? NSData {
+            posterImage.image = UIImage(data: data as Data)
+        }
+        
+     /*   if let posterPath = selectedFavMovie?.value(forKeyPath: "posterPath") as? String {
             let urlImage = "https://image.tmdb.org/t/p/w200\(posterPath)"
-            print(urlImage)
             posterImage.image = UIImage(named: urlImage)
             if let smallURL = URL(string: urlImage) {
                 downloadTask = posterImage.loadImage(url: smallURL)
-                print("Poster is \(smallURL)")
             }
-        }
+ }*/
         favButton.setImage(UIImage(named: "favorite_full_icon"), for: .normal)
     }
 }
