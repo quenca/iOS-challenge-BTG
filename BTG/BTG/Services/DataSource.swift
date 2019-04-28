@@ -38,14 +38,12 @@ class DataSource {
     func getURL () -> URL {
         let urlString = "https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=2d6a9f31d31c88c43c84abe5cda527cc"
         let url = URL(string: urlString)
-        print(url!)
         return url!
     }
     
     func getGenreURL () -> URL {
         let urlString = "https://api.themoviedb.org/3/genre/movie/list?api_key=2d6a9f31d31c88c43c84abe5cda527cc&language=en-US"
         let url = URL(string: urlString)
-        print(url!)
         return url!
     }
     
@@ -56,7 +54,6 @@ class DataSource {
         let urlString = "https://api.themoviedb.org/3/search/movie?api_key=2d6a9f31d31c88c43c84abe5cda527cc&query=\(encodedText)"
         
         let url = URL(string: urlString)
-        print("URL: \(url!)")
         return url!
     }
     
@@ -66,7 +63,6 @@ class DataSource {
             let result = try decoder.decode(MovieListResult.self, from: data)
             return result.results
         } catch {
-            print("JSON Error: \(error)")
             return []
         }
     }
@@ -78,7 +74,6 @@ class DataSource {
             print("GENRE: \(result.genres)")
             return result.genres
         } catch {
-            print("JSON Error: \(error)")
             return nil
         }
     }

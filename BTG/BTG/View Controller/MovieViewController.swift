@@ -10,7 +10,6 @@ import UIKit
 class MovieViewController: UIViewController {
     
     //MARK: -Properties
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let dataSource = DataSource()
@@ -18,7 +17,6 @@ class MovieViewController: UIViewController {
     // A dictionary of offscreen cells that are used within the sizeForItemAtIndexPath method to handle the size calculations. These are never drawn onscreen. The dictionary is in the format:
     // { NSString *reuseIdentifier : UICollectionViewCell *offscreenCell, ... }
     var offscreenCells = Dictionary<String, UICollectionViewCell>()
-    
     let kHorizontalInsets: CGFloat = 10.0
     let kVerticalInsets: CGFloat = 10.0
     
@@ -183,12 +181,11 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
         case .noResults:
             return 1
         case .results(let list):
-            return list.count ?? 0
+            return list.count
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("Collection view cellForRowAt")
         
         switch dataSource.state {
         case .notSearchedYet:
@@ -206,13 +203,13 @@ extension MovieViewController: UICollectionViewDelegate, UICollectionViewDataSou
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.movieCell, for: indexPath) as! MovieCollectionViewCell
             
             let movieResult = list[indexPath.row]
-            cell.configure(for: (movieResult ?? nil)!)
+            cell.configure(for: movieResult)
             cell.layoutIfNeeded()
             return cell
         }
     }
     
-func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         if case .results(let list) = dataSource.state {
             let movieDetail = MovieDetailViewController()
             movieDetail.selectedMovie? = list[indexPath.row]
@@ -220,7 +217,7 @@ func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPat
         }
     }
     
-   // MARK: -Navigation
+    // MARK: -Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MovieDetail" {
             if case .results(let list) = dataSource.state {

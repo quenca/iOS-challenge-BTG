@@ -18,7 +18,7 @@ class FavoritesViewController: UIViewController {
     let kVerticalInsets: CGFloat = 10.0
     
     var favMovies = MovieDetailViewController()
-
+    
     var searchController = UISearchController(searchResultsController: nil)
     
     struct CollectionViewCellIdentifiers {
@@ -31,7 +31,7 @@ class FavoritesViewController: UIViewController {
         // Setup the Collection View
         collectionView.register(UINib(nibName: CollectionViewCellIdentifiers.favMovieCell, bundle: .main), forCellWithReuseIdentifier: CollectionViewCellIdentifiers.favMovieCell)
         
-       setupNavigationBar()
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -168,35 +168,35 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     // Mark: -CollectionView Delegates
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-            retrieveData()
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.favMovieCell, for: indexPath) as! FavoriteMovieCollectionViewCell
+        retrieveData()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellIdentifiers.favMovieCell, for: indexPath) as! FavoriteMovieCollectionViewCell
         
-            let fav = favMovies.favMovies[indexPath.row]
+        let fav = favMovies.favMovies[indexPath.row]
         
-            cell.configure(for: (fav ?? nil)!)
-            cell.layoutIfNeeded()
-            return cell
+        cell.configure(for: fav)
+        cell.layoutIfNeeded()
+        return cell
         
     }
     
-      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
         let movieDetail = MovieDetailViewController()
         movieDetail.selectedFavMovie? = favMovies.favMovies[indexPath.row]
         
-     performSegue(withIdentifier: "MovieDetail", sender: indexPath)
-     
-     }
-     
-     // MARK: -Navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "MovieDetail" {
-
-     let detailViewController = segue.destination as! MovieDetailViewController
-     let indexPath = sender as! IndexPath
-     let fav = favMovies.favMovies[indexPath.row]
-     detailViewController.selectedFavMovie = fav
-     }
+        performSegue(withIdentifier: "MovieDetail", sender: indexPath)
+        
+    }
+    
+    // MARK: -Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MovieDetail" {
+            
+            let detailViewController = segue.destination as! MovieDetailViewController
+            let indexPath = sender as! IndexPath
+            let fav = favMovies.favMovies[indexPath.row]
+            detailViewController.selectedFavMovie = fav
+        }
     }
 }
 

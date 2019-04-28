@@ -10,6 +10,7 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    // MARK: -Properties
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var date: UILabel!
@@ -31,16 +32,22 @@ class MovieCollectionViewCell: UICollectionViewCell {
         downloadTask = nil
     }
     
+    //MARK: -Configure the view for Movies
     func configure(for result: Movie) {
         
-        date.text = result.release_date!
-        titleLabel.text = result.title!
+        if let releaseDate = result.release_date {
+             date.text = releaseDate
+        }
+        
+        if let title = result.title {
+            titleLabel.text = title
+        }
+        
         if let posterPath = result.poster_path {
             let urlImage = "https://image.tmdb.org/t/p/w200\(posterPath)"
             posterImage.image = UIImage(named: urlImage)
             if let smallURL = URL(string: urlImage) {
                 downloadTask = posterImage.loadImage(url: smallURL)
-                print(smallURL)
             }
         }
     }

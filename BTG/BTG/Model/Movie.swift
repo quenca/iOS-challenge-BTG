@@ -64,7 +64,3 @@ struct Movie: Codable {
         case vote_average
     }
 }
-
-
-
-

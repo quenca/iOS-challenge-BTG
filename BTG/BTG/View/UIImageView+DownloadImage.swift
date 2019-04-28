@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: -Download Image from URL
 extension UIImageView {
     func loadImage(url: URL) -> URLSessionDownloadTask {
         let session = URLSession.shared
@@ -30,4 +31,3 @@ extension UIImageView {
         return donwloadTask
     }
 }
-
