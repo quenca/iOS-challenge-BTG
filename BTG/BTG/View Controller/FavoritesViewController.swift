@@ -24,6 +24,7 @@ class FavoritesViewController: UIViewController {
     struct CollectionViewCellIdentifiers {
         static let favMovieCell = "FavoriteMovieCollectionViewCell"
     }
+    
     // MARK: -LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class FavoritesViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Favorite Movie"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.scopeButtonTitles = ["Title", "Year"]
     }
     
     // Retrieve Data from CoreData
@@ -130,39 +132,75 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     
     // MARK: -SearchBar for Favorite Movies
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            var predicate: NSPredicate = NSPredicate()
-            predicate = NSPredicate(format: "title contains[c] '\(searchText)'")
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteMovies")
-            fetchRequest.predicate = predicate
+        guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] else { return }
+        
+        if scopeString == "Title" {
             
-            do {
-                favMovies.favMovies = try context.fetch(fetchRequest) as! [NSManagedObject]
-            } catch {
-                print("error")
+            if searchText != "" {
+                var predicate: NSPredicate = NSPredicate()
+                predicate = NSPredicate(format: "title contains[c] '\(searchText)'")
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteMovies")
+                fetchRequest.predicate = predicate
+                
+                do {
+                    favMovies.favMovies = try context.fetch(fetchRequest) as! [NSManagedObject]
+                } catch {
+                    print("error")
+                }
+            } else {
+                guard let appDelegate =
+                    UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                }
+                
+                let managedContext =
+                    appDelegate.persistentContainer.viewContext
+                
+                let fetchRequest =
+                    NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovies")
+                
+                do {
+                    favMovies.favMovies = try managedContext.fetch(fetchRequest)
+                } catch let error as NSError {
+                    print("Could not fetch. \(error), \(error.userInfo)")
+                }
             }
         } else {
-            guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-                    return
-            }
-            
-            let managedContext =
-                appDelegate.persistentContainer.viewContext
-            
-            let fetchRequest =
-                NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovies")
-            
-            do {
-                favMovies.favMovies = try managedContext.fetch(fetchRequest)
-            } catch let error as NSError {
-                print("Could not fetch. \(error), \(error.userInfo)")
+            if searchText != "" {
+                var predicate: NSPredicate = NSPredicate()
+                predicate = NSPredicate(format: "year contains[c] '\(searchText)'")
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appDelegate.persistentContainer.viewContext
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteMovies")
+                fetchRequest.predicate = predicate
+                
+                do {
+                    favMovies.favMovies = try context.fetch(fetchRequest) as! [NSManagedObject]
+                } catch {
+                    print("error")
+                }
+            } else {
+                guard let appDelegate =
+                    UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                }
+                
+                let managedContext =
+                    appDelegate.persistentContainer.viewContext
+                
+                let fetchRequest =
+                    NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovies")
+                
+                do {
+                    favMovies.favMovies = try managedContext.fetch(fetchRequest)
+                } catch let error as NSError {
+                    print("Could not fetch. \(error), \(error.userInfo)")
+                }
             }
         }
         collectionView.reloadData()
-        
     }
     
     // Mark: -CollectionView Delegates

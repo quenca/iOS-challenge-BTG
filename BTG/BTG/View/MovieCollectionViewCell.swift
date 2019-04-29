@@ -34,9 +34,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     //MARK: -Configure the view for Movies
     func configure(for result: Movie) {
-        
+
         if let releaseDate = result.release_date {
-             date.text = releaseDate
+            // Get only the year
+            let index = releaseDate.index(releaseDate.startIndex, offsetBy: 4)
+            date.text = String(releaseDate.prefix(upTo: index))
         }
         
         if let title = result.title {

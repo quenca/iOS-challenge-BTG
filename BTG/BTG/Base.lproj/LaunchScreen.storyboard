@@ -19,16 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="Lsy-nX-aYC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <rect key="frame" x="0.0" y="77.666666666666686" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.79607843140000001" green="0.6877629757" blue="0.3646217585" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.82398504018783569" green="0.76908111572265625" blue="0.5372081995010376" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.94372767210006714" green="0.81422644853591919" blue="0.4312717616558075" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DNx-Mv-Nv8"/>
-                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IaP-br-De5"/>
-                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="K68-mz-0rq"/>
-                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nVz-Bd-Kzj"/>
+                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="KOf-pc-9pV"/>
+                            <constraint firstItem="Lsy-nX-aYC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Tn2-Zo-4cD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

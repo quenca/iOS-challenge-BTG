@@ -85,7 +85,7 @@ class MovieDetailViewController: UIViewController {
             
             do {
                 try managedContext.save()
-                retrieveData()
+                retrieveCoreData()
             } catch {
                 print(error)
             }
@@ -95,7 +95,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     // Retrieve Data from CoreData
-    func retrieveData() {
+    func retrieveCoreData() {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -114,19 +114,21 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    // MARK: -Action (Save Favorite Movie into CoreData)
+    // MARK: -Action (Favorite/UnFavourite Movie into CoreData)
     @IBAction func favMovie(_ sender: UIButton) {
         
+        //MARK: -UnFavourite
         for data in favMovies {
             if data.value(forKey: "title") as? String == titleLabel.text {
                 // delete fav
                 deleteMovie(movie: data)
                 favButton.setImage(UIImage(named: "favorite_empty_icon"), for: .normal)
-                retrieveData()
+                retrieveCoreData()
                 return
             }
         }
         
+        //MARK: -Favorite
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -173,7 +175,7 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: -Update the Interface for Movies
     func updateUI() {
-        retrieveData()
+        retrieveCoreData()
         
         if let title = selectedMovie?.title {
             titleLabel.text = title
@@ -182,7 +184,9 @@ class MovieDetailViewController: UIViewController {
         }
         
         if let year = selectedMovie?.release_date {
-            yearLabel.text = year
+            // Get only the year
+            let index = year.index(year.startIndex, offsetBy: 4)
+            yearLabel.text = String(year.prefix(upTo: index))
         } else {
             yearLabel.text = "No Results"
         }
@@ -225,7 +229,9 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: -Update the Interface for Favorite Movies
     func updateUIFav() {
-        retrieveData()
+        
+        retrieveCoreData()
+        
         if let title = selectedFavMovie?.value(forKeyPath: "title") as? String  {
             titleLabel.text = title
         } else {
@@ -233,7 +239,9 @@ class MovieDetailViewController: UIViewController {
         }
         
         if let year = selectedFavMovie?.value(forKeyPath: "year") as? String {
-            yearLabel.text = year
+            // Get only the year
+            let index = year.index(year.startIndex, offsetBy: 4)
+            yearLabel.text = String(year.prefix(upTo: index))
         } else {
             yearLabel.text = "No Results"
         }
@@ -250,7 +258,9 @@ class MovieDetailViewController: UIViewController {
             genreLabel.text = "No Results"
         }
         
-        voteAverage.text = String(format: "%@", selectedFavMovie?.value(forKey: "voteAverage") as! CVarArg)
+        if (selectedFavMovie?.value(forKey: "voteAverage") as? CVarArg) != nil {
+            voteAverage.text =  String(format: "%@", selectedFavMovie?.value(forKey: "voteAverage") as! CVarArg)
+        }
         
         if let data = selectedFavMovie?.value(forKeyPath: "posterPath") as? NSData {
             posterImage.image = UIImage(data: data as Data)
